@@ -17,7 +17,7 @@ class Ability
     alias_action :create, :read, :update, :to => :not_destroy
 
     if user.has_role? :user
-     can :not_destroy App, :applicant_id => user.id
+     can :not_destroy, App, :applicant_id => user.id
     end
 
     # Define abilities for the passed in user here. For example:
