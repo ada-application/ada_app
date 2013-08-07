@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :authorize_user!
+  load_and_authorize_resource
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   # GET /questions

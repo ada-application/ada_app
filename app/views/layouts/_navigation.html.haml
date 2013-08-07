@@ -3,6 +3,16 @@
     = link_to 'Logout', destroy_user_session_path, method: :delete
   - if current_user.has_role? :admin
     %li
-      = link_to 'Admin', users_path
+      = link_to 'Users', users_path
+  - if can? :manage, Question
+    %li
+      = link_to 'Questions', questions_path
+  - if false #can? :manage, App
+    %li
+      = link_to 'Applications', '#' #apps_path
+  - else
+    %li
+      = link_to 'My Application', root_path
 - else
-  = link_to "Sign in with Github", user_omniauth_authorize_path(:github)
+  %li
+    = link_to "Sign in with Github", user_omniauth_authorize_path(:github)
