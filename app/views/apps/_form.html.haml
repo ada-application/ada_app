@@ -1,8 +1,16 @@
 = simple_form_for @app, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :accepted
-  = f.input :score
-  = f.input :reviewer_id
-  = f.input :rejected
+  - if current_user.has_role?(:admin) || current_user.has_role?(:vip)
+    = f.input :accepted
+    = f.input :score
+    = f.input :reviewer_id
+    = f.input :rejected
+  - else
+    %ol
+      - @app.answers.each do |answer|
+        %li
+          = answer.question.text
+          %p
+            = answer.answer_text
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), apps_path, :class => 'btn'

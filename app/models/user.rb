@@ -12,7 +12,9 @@ class User < ActiveRecord::Base
                            provider:auth.provider,
                            uid:auth.uid,
                            email:auth.info.email,
-                           encrypted_password:Devise.friendly_token[0,20]
+                           encrypted_password:auth.credentials.token#,
+                           #github_token: auth.access_token,
+                           #github_username: auth.extra.raw_info.login
                            )
     end
     user

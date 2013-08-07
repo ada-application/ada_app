@@ -1,0 +1,13 @@
+- model_class = App
+.page-header
+  %h1 New Application
+- client = Octokit::Client.new(:login => "#{current_user.name}", :oauth_token => "#{current_user.encrypted_password}")
+%p
+  Create a gist called Resume.md on Github. It will appear here:
+%p
+  = link_to 'Resume', client.gists.select{|f| f.filename = 'Resume.md'}.first.files.first[1].raw_url
+%p
+  Gravitar:
+  = image_tag client.user.avatar_url
+
+= render :partial => "form"

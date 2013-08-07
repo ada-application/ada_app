@@ -1,1 +1,6 @@
-Your Application:
+Your Applications:
+- client = Octokit::Client.new(:login => "#{current_user.name}", :oauth_token => "#{current_user.encrypted_password}")
+Create a gist called Resume.md on Github. It will appear here:
+= client.gists.select{|f| f.filename = 'Resume.md'}.first.files.first[1].raw_url
+client.gists.select{|f| f.filename = 'Resume.md'}.first.files.first[1].raw_url
+= image_tag client.user.avatar_url
