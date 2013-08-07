@@ -7,9 +7,9 @@
   - if can? :manage, Question
     %li
       = link_to 'Questions', questions_path
-  - if false #can? :manage, App
+  - if can? :manage, App
     %li
-      = link_to 'Applications', '#' #apps_path
+      = link_to 'Applications', apps_path
   - else
     %li
       = link_to 'My Application', root_path

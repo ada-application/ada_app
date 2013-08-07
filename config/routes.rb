@@ -1,4 +1,6 @@
 AdaApp::Application.routes.draw do
+  resources :apps
+
   resources :questions
 
   root :to => "home#index"
