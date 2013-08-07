@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   rolify
   devise :database_authenticatable, :omniauthable, :omniauth_providers => [:github] 
+  
+  has_many :apps, foreign_key: :reviewer_id
+  after_create :assign_default_role
 
   def self.find_for_github_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
@@ -21,6 +24,12 @@ class User < ActiveRecord::Base
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+private
+  def assign_default_role
+    add_role(:user)
+    add_role(:admin) if email == 'renee@nird.us' || 'vegan.bookis@gmail.com' || 'elise.worthy@gmail.com'
   end
 
 end
