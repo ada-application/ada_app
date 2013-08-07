@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 private
   def assign_default_role
     add_role(:user)
-    add_role(:admin) if email == 'renee@nird.us' || 'vegan.bookis@gmail.com' || 'elise.worthy@gmail.com'
+    add_role(:admin) if ['renee@nird.us', 'vegan.bookis@gmail.com', 'elise.worthy@gmail.com'].include? email 
   end
 
 end
