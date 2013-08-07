@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
 
+private
+  def authorize_user!
+    authorize! params[:action].to_sym, params[:controller].classify, :message => 'Not authorized to perform this action'
+  end
+
 end
