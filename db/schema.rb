@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130807202452) do
+ActiveRecord::Schema.define(version: 20130807202731) do
+
+  create_table "answers", force: true do |t|
+    t.integer  "applicant_id"
+    t.integer  "question_id"
+    t.text     "answer_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "apps", force: true do |t|
     t.boolean  "accepted"
