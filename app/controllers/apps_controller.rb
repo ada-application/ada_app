@@ -20,7 +20,7 @@ class AppsController < ApplicationController
   end
 
   def create
-    @app = App.new(app_params)
+    @app = App.new
     @app.applicant = current_user
 
     if @app.save
@@ -47,10 +47,6 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def app_params
-    if can? :create, App
-      params.require(:app).permit()
-    else
-      params.require(:app).permit(:accepted, :score, :reviewer_id, :rejected)
-    end
+    params.require(:app).permit(:accepted, :score, :reviewer_id, :rejected)
   end
 end

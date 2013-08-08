@@ -8,7 +8,13 @@
     %li
       = link_to 'Questions', questions_path
   %li
-    = link_to 'Applications', apps_path
+    - if current_user.not_student?
+      = link_to 'Applications', apps_path
+    - else
+      - unless (apps = current_user.apps).empty?
+        = link_to 'My Application', app_path(apps.first)
+      - else
+        = link_to 'Start Application', new_app_path
 - else
   %li
     = link_to "Sign in with Github", user_omniauth_authorize_path(:github)
